@@ -74,6 +74,11 @@ IMAGE_INSTALL_remove = " psplash \
 # Image core minimal
 IMAGE_ROOTFS_SIZE = "1024000"
 
-PACKAGE_INSTALL_remove = " psplash apmd "
-FEATURE_INSTALL_remove = " psplash "
 IMAGE_FEATURE_remove = " psplash "
+FEATURE_INSTALL_remove = " psplash "
+PACKAGE_INSTALL_remove = " psplash apmd "
+
+# Set image structure
+WKS_FILES = "diskparts.wks"
+IMAGE_FSTYPES_append = " wic wic.gz tar.gz"
+WKS_SEARCH_PATH := "${THISDIR}:${WKS_SEARCH_PATH}"
