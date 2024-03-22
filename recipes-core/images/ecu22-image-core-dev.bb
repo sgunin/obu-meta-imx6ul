@@ -3,6 +3,13 @@ DESCRIPTION = "ECU22 production image"
 
 inherit core-image
 
+# Image install
+IMAGE_INSTALL = " \
+    packagegroup-core-boot \
+    packagegroup-core-full-cmdline \
+    ${CORE_IMAGE_EXTRA_INSTALL} \
+"
+
 ## Select Image Features
 IMAGE_FEATURES += " \
     dev-pkgs \
@@ -13,26 +20,21 @@ IMAGE_FEATURES += " \
     ssh-server-openssh \
 "
 
-CORE_IMAGE_EXTRA_INSTALL += " \
-    packagegroup-core-boot \
-    packagegroup-core-full-cmdline \
-    
+IMAGE_LINGUAS = " "
+
+CORE_IMAGE_EXTRA_INSTALL = " \
     rpm \
     tar \
     bzip2 \
     gzip \
-    
     imx-uuc \
     imx-kobs \
     myir-regulatory \
     firmware-imx \
     firmware-brcm43362 \
     kernel-module-rtl8188fu \
-    
     udev-extraconf \
     udev-rules-imx \ 
-    myir-rc-local \
-
     vlan \
     iperf3 \
     iproute2 \
@@ -43,18 +45,14 @@ CORE_IMAGE_EXTRA_INSTALL += " \
     ntpdate \
     ppp \
     ppp-quectel \
-
     wpa-supplicant \
     wpa-supplicant-cli \
     wpa-supplicant-passphrase \
-    
     openssh \
     openssl \
-
     cpio \
     cryptodev-module \
     e2fsprogs \
-    v4l-utils \
     libgpiod \
     libgpiod-tools \
     hostapd \

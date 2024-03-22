@@ -1,0 +1,26 @@
+# UBoot
+# part u-boot --source rawcopy --sourceparams="file=u-boot.imx-sd" --ondisk mmcblk --no-table --align 1 --size 400k
+
+# Main boot partition
+part /boot --source bootimg-partition --ondisk mmcblk0 --fstype=vfat --label boot --active --align 4096 --size 16M
+
+# Slave boot partition
+part /sboot --source bootimg-partition --ondisk mmcblk0 --fstype=vfat --label boot --align 4096 --size 16M
+
+# Rescue boot partition
+part /rboot --source bootimg-partition --ondisk mmcblk0 --fstype=vfat --label boot --align 4096  --size 16M
+
+# RootFS rescue partition
+part /rescue --source rootfs --rootfs-dir=core-image-base --ondisk mmcblk0 --fstype=ext4 --label rootfs-rescue --align 4096 --overhead-factor=1.0
+
+# RootFS last partition
+part /last --source rootfs --rootfs-dir=core-image-base --ondisk mmcblk0 --fstype=ext4 --label rootfs-last --align 4096 --overhead-factor=1.0
+
+# RootFS main partition
+part / --source rootfs --rootfs-dir=core-image-base --ondisk mmcblk0 --fstype=ext4 --label rootfs --align 4096 --overhead-factor=1.0
+
+# User data partition
+#part /data --ondisk mmcblk --fstype=ext4 --label data --align 1024 --size 3200M
+
+# Bootloader params
+bootloader --ptable msdos --timeout=0 --append=""
